@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const uploadService = require("./apis/upload");
@@ -11,6 +12,8 @@ const HOST = "127.0.0.1";
 
 /** Statics path */
 const CLIENT = path.resolve(process.cwd(), "dist", "index.html");
+
+app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "dist")));
 /** parse application/x-www-form-urlencoded */
