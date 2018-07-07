@@ -5,11 +5,24 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 const precss = require("precss");
 const autoprefixer = require("autoprefixer");
 
+const SRC = path.resolve(__dirname, "src");
+
 module.exports = {
   entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.bundle.js"
+  },
+  resolve: {
+    /** Must include .js, .jsx for react to resolve after ts-loader */
+    extensions: [".js", ".jsx", ".json", ".css", ".scss"],
+    alias: {
+      assets: path.resolve(SRC, "assets"),
+      utils: path.resolve(SRC, "utils"),
+      components: path.resolve(SRC, "components"),
+      routers: path.resolve(SRC, "routers")
+    },
+    modules: [SRC, "node_modules"]
   },
   module: {
     rules: [
