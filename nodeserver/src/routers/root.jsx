@@ -4,21 +4,21 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-  Link
+  Redirect
+  // Link
 } from "react-router-dom";
-import Home from "../components/home";
+import HomeView from "./home";
 
 const Root = () => (
   <Router>
     <main>
-      <ul>
+      {/* <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
-      </ul>
+      </ul> */}
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomeView} />
         <Redirect to="/" />
       </Switch>
     </main>

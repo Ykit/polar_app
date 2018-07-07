@@ -7,9 +7,7 @@ import Root from "./routers/root";
 
 const Index = () => (
   <div id="welcome_msg">
-    <h1>
-      <Root />
-    </h1>
+    <Root />
   </div>
 );
 
