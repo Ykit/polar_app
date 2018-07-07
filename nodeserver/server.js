@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const uploadService = require("./apis/upload");
+const Receipt = require("./models/receipt");
 
 const PORT = "3000";
 const HOST = "127.0.0.1";
@@ -40,6 +41,14 @@ app.post("/image", (req, res) => {
     }
   });
 });
+
+// force: true will drop the table if it already exists
+Receipt.sync().then(() =>
+  // Table created
+  Receipt.create({
+    location: "Central, Hong Kong"
+  })
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${HOST} ON ${PORT}`);

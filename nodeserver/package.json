@@ -20,11 +20,13 @@
     "@material-ui/icons": "^1.1.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "mysql2": "^1.5.3",
     "popper.js": "^1.14.3",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-loadable": "^5.4.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "sequelize": "^4.38.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
