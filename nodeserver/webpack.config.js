@@ -1,12 +1,15 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
+const precss = require("precss");
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.bundle.js"
   },
   module: {
     rules: [
@@ -26,13 +29,11 @@ module.exports = {
             },
             {
               // postcss-loader is for bootstrap to work
-              loader: 'postcss-loader', // Run post css actions
+              loader: "postcss-loader", // Run post css actions
               options: {
-                plugins: function () { // post css plugins, can be exported to postcss.config.js
-                  return [
-                    require('precss'),
-                    require('autoprefixer')
-                  ];
+                plugins() {
+                  // post css plugins, can be exported to postcss.config.js
+                  return [precss, autoprefixer];
                 }
               }
             },
@@ -52,22 +53,28 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {} // do not remove
           }
         ]
-      },
+      }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: "Polar App",
       template: "./src/index.html",
       filename: "index.html"
     }),
     new ExtractTextPlugin({
-      filename: 'style.css',
-      disable: process.env.NODE_ENV === 'development',
+      filename: "style.css",
+      disable: process.env.NODE_ENV === "development"
     }),
-  ],
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true
+    })
+  ]
 };
-
