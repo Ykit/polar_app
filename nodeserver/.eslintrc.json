@@ -5,7 +5,8 @@
   },
   "extends": [
     "eslint-config-airbnb",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier/react"
   ],
   "rules": {
     "import/extensions": 0,
@@ -14,9 +15,11 @@
       2
     ],
     "linebreak-style": 0,
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-console": 0
   },
   "plugins": [
-    "prettier"
+    "prettier",
+    "react"
   ]
 }
