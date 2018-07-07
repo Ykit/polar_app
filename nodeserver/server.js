@@ -46,12 +46,12 @@ app.post("/image", (req, res) => {
 });
 
 // force: true will drop the table if it already exists
-Receipt.sync().then(() =>
-  // Table created
-  Receipt.create({
-    location: "Central, Hong Kong"
-  })
-);
+// Receipt.sync().then(() =>
+//   // Table created
+//   Receipt.create({
+//     location: "Central, Hong Kong"
+//   })
+// );
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${HOST} ON ${PORT}`);

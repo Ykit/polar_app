@@ -8,6 +8,7 @@ import {
   // Link
 } from "react-router-dom";
 import HomeView from "./home";
+import ItemsView from "./items";
 
 const Root = () => (
   <Router>
@@ -19,6 +20,7 @@ const Root = () => (
       </ul> */}
       <Switch>
         <Route exact path="/" component={HomeView} />
+        <Route exact path="/items" component={ItemsView} />
         <Redirect to="/" />
       </Switch>
     </main>

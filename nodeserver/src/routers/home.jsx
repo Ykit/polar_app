@@ -4,6 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import request from "superagent";
+import { withRouter } from "react-router-dom";
 import PolarBottomNav from "../components/bottomnavigation";
 import CameraButton from "../components/cameraButton";
 import TakeScreenShotButton from "../components/takeScreenShotButton";
@@ -32,6 +34,15 @@ class HomeView extends React.Component {
 
   handleConfirm() {
     console.log(`Handle Confirm`);
+    const url = "http://127.0.0.1:3000/image";
+    request
+      .post(url)
+      .set("Content-Type", "application/json")
+      .send({ name: "tj", pet: "tobi" })
+      .then(data => {
+        console.log(data);
+        this.props.history.push("/items");
+      });
   }
 
   handleTakeScreenShotButton() {
@@ -101,4 +112,4 @@ class HomeView extends React.Component {
   }
 }
 
-export default withStyles(styles)(HomeView);
+export default withRouter(withStyles(styles)(HomeView));
