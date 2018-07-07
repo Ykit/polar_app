@@ -15,7 +15,11 @@ class ItemsView extends React.Component {
   }
 
   componentDidMount() {
-    console.log(`Components did mount: call api to get data`);
+    console.log(
+      `Components did mount: call api to get data: ${
+        this.props.location.state.some
+      }`
+    );
     this.setState({
       items: []
     });
@@ -25,7 +29,7 @@ class ItemsView extends React.Component {
     const { items } = this.state;
     console.log(`items: ${items}`);
     const { classes } = this.props;
-    return <div className={classes.root} />;
+    return <div className={classes.root}>Hello world</div>;
   }
 }
 

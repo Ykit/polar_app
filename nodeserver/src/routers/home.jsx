@@ -1,14 +1,12 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import request from "superagent";
 import { withRouter } from "react-router-dom";
-import PolarBottomNav from "../components/bottomnavigation";
 import CameraButton from "../components/cameraButton";
 import TakeScreenShotButton from "../components/takeScreenShotButton";
+
+const SERVER_PATH = "http://127.0.0.1:3000";
 
 const styles = {
   root: {
@@ -34,14 +32,14 @@ class HomeView extends React.Component {
 
   handleConfirm() {
     console.log(`Handle Confirm`);
-    const url = "http://127.0.0.1:3000/image";
+    const url = `${SERVER_PATH}/image`;
     request
       .post(url)
       .set("Content-Type", "application/json")
       .send({ name: "tj", pet: "tobi" })
       .then(data => {
         console.log(data);
-        this.props.history.push("/items");
+        this.props.history.push("/items", { some: "state" });
       });
   }
 
@@ -73,14 +71,6 @@ class HomeView extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              Polar App
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        {/* video */}
         {!hasTakenPhoto && <video ref={this.videoRef} autoPlay />}
 
         {/* canvas */}
@@ -106,7 +96,6 @@ class HomeView extends React.Component {
             Confirm
           </Button>
         )}
-        <PolarBottomNav />
       </div>
     );
   }
