@@ -5,7 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const uploadService = require("./apis/upload");
-const Receipt = require("./models/receipt");
+// const Receipt = require("./models/receipt");
 
 const PORT = "3000";
 const HOST = "127.0.0.1";

@@ -1,6 +1,9 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const styles = {
   root: {}
@@ -29,7 +32,21 @@ class ItemsView extends React.Component {
     const { items } = this.state;
     console.log(`items: ${items}`);
     const { classes } = this.props;
-    return <div className={classes.root}>Hello world</div>;
+    return (
+      <div className={classes.root}>
+        <List>
+          <ListItem>
+            <ListItemText primary="Seller" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Date" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Time" />
+          </ListItem>
+        </List>
+      </div>
+    );
   }
 }
 
