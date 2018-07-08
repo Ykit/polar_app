@@ -48,9 +48,9 @@ class ItemsView extends React.Component {
     console.log(`items: ${items}`);
     const { classes } = this.props;
     const dummyItems = [
-      { id: 1, itemName: "Coffee", amount: "$30" },
-      { id: 2, itemName: "Mocha", amount: "$78" },
-      { id: 3, itemName: "Cappuccino", amount: "$45" }
+      { id: 1, itemName: "H.Latte:g", amount: "$78.0" },
+      { id: 2, itemName: "H.Mocha:g", amount: "$42.0" },
+      { id: 3, itemName: "H.BTGrap:t", amount: "$31.0" }
     ];
     return (
       <div className={classes.root}>
@@ -97,7 +97,7 @@ class ItemsView extends React.Component {
           </Grid>
 
           <Grid item xs={3}>
-            <Typography>$100</Typography>
+            <Typography>$151</Typography>
           </Grid>
         </Grid>
       </div>

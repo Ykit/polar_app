@@ -21,6 +21,11 @@ function exec() {
       const detections = results[0].textAnnotations;
       console.log("Text:");
       detections.forEach(text => console.log(text));
+      /**
+       * H.Latte:g : $78.0
+       * H.Mocha:g : $42.0
+       * H.BTGrap:t : $31.0
+       */
       return Promise.resolve();
     })
     .catch(err => {
