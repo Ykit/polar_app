@@ -1,9 +1,9 @@
 import * as React from "react";
+import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-// import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-// import reactLoadable from "react-loadable";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,33 +13,37 @@ import {
 } from "react-router-dom";
 import HomeView from "./home";
 import ItemsView from "./items";
+import ReceiptsView from "./receipts";
 import PolarBottomNav from "../components/bottomnavigation";
 
-const Root = () => (
+const styles = theme => ({
+  paper: {
+    padding: theme.spacing.unit * 2,
+    height: "125vw"
+  }
+});
+
+const Root = ({ classes }) => (
   <Router>
-    <div>
-      <AppBar position="static" color="default">
+    <main>
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="title" color="inherit">
             Polar App
           </Typography>
         </Toolbar>
       </AppBar>
-      <main>
-        {/* <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-      </ul> */}
+      <Paper className={classes.paper}>
         <Switch>
           <Route exact path="/" component={HomeView} />
           <Route exact path="/items" component={ItemsView} />
+          <Route exact path="/receipts" component={ReceiptsView} />
           <Redirect to="/" />
         </Switch>
-      </main>
+      </Paper>
       <PolarBottomNav />
-    </div>
+    </main>
   </Router>
 );
 
-export default Root;
+export default withStyles(styles)(Root);

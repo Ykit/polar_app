@@ -1,24 +1,27 @@
+require("dotenv").config();
 const vision = require("@google-cloud/vision");
+const path = require("path");
 
 // Creates a client - change the path to the private key pair
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: "/path/to/keyfile.json"
+  // keyFilename: "/my-project-1530775466840-5bbc99b21b72.json"
+  keyFilename: path.resolve(
+    __dirname,
+    "..",
+    "my-project-1530775466840-5bbc99b21b72.json"
+  )
 });
-
-/**
- * TODO(developer): Uncomment the following line before running the sample.
- */
-// const fileName = 'Local image file, e.g. /path/to/image.png';
-
-// Performs text detection on the local file
 
 function exec() {
   client
-    .textDetection(fileName)
+    .textDetection(
+      "https://s3-ap-southeast-1.amazonaws.com/polar-app-image-test/IMG20180708014929.jpg"
+    )
     .then(results => {
       const detections = results[0].textAnnotations;
       console.log("Text:");
       detections.forEach(text => console.log(text));
+      return Promise.resolve();
     })
     .catch(err => {
       console.error("ERROR:", err);

@@ -10,7 +10,21 @@ const SERVER_PATH = "http://127.0.0.1:3000";
 
 const styles = {
   root: {
+    width: "100%",
     flexGrow: 1
+  },
+  canvas: {
+    margin: "auto",
+    display: "block"
+  },
+  video: {
+    margin: "auto",
+    display: "block"
+  },
+  confirmButton: {
+    margin: "auto",
+    display: "block",
+    marginTop: "30px"
   }
 };
 
@@ -71,7 +85,10 @@ class HomeView extends React.Component {
 
     return (
       <div className={classes.root}>
-        {!hasTakenPhoto && <video ref={this.videoRef} autoPlay />}
+        {/* video */}
+        {!hasTakenPhoto && (
+          <video className={classes.video} ref={this.videoRef} autoPlay />
+        )}
 
         {/* canvas */}
         <canvas ref={this.canvasRef} className={classes.canvas} />
@@ -85,13 +102,14 @@ class HomeView extends React.Component {
 
         {!hasTakenPhoto && <CameraButton onCamera={this.cameraInit} />}
 
+        {/* Confirm button */}
         {hasTakenPhoto && (
           <Button
             onClick={this.handleConfirm}
             variant="raised"
             size="large"
-            color="primary"
-            className={classes.button}
+            color="secondary"
+            className={classes.confirmButton}
           >
             Confirm
           </Button>

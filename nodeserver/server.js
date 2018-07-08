@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
-const uploadService = require("./apis/upload");
+const visionService = require("./apis/ggvision");
 // const Receipt = require("./models/receipt");
 
 const PORT = "3000";
@@ -33,10 +33,11 @@ app.get("/", (req, res) => {
  * 3. Process the data from computer vision api
  * 4. Save to database
  */
-app.post("/image", (req, res) => {
+app.post("/image", async (req, res) => {
   const { payload } = req.body;
   console.log(payload);
-  uploadService.init();
+  const data = await visionService.exec();
+  console.log(data);
   res.json({
     data: {
       test: "Hello world",
